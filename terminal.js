@@ -1,17 +1,64 @@
-// Initialisation
-const commands = {};
+// Set variables
+const currentDate = new Date();
 
+// Set commands
+const commands = {
+    reboot()
+    {
+        term.set_prompt('').pause(true)
+        term.echo(`System reboot scheduled at <b>${currentDate}</b>.`)
+        setTimeout(() => {
+            term.clear();
+            term.set_prompt('').pause(true)
+            term.echo('<b>Rebooting.</b>');
+        }, 1000);
+        setTimeout(() => {
+            term.clear();
+            term.set_prompt('').pause(true)
+            term.echo('<b>Rebooting..</b>');
+        }, 2000);
+        setTimeout(() => {
+            term.set_prompt('').pause(true)
+            term.clear();
+            term.echo('<b>Rebooting...</b>');
+        }, 3000);
+        setTimeout(() => {
+            location.reload(true);
+        }, 4000);
+    },
+    help()
+    {
+        term.echo(`Commands that are <b>available</b>: ${help}`);
+    },
+    echo(...args)
+    {
+        term.echo(() => args.join(' '));
+    }
+}
+
+// Initialise terminal
 const term = $('body').terminal(commands,
-                                {
-                                    greetings: false
-                                });
+    {
+        greetings: false,
+        checkArity: false
+    });
+
+// `help` command
+const formatter = new Intl.ListFormat('en',
+                                        {
+                                            style: 'long',
+                                            type: 'conjunction',
+                                        });
+const command_list = Object.keys(commands);
+const help = formatter.format(command_list);
 
 // Colour Formatting
 function rand(max) {
     return Math.floor(Math.random() * (max + 1));
 }
 function rainbow(string) {
-    return lolcat.rainbow(function(char, color) {
+    return lolcat.rainbow(function(char, color)
+    {
         char = $.terminal.escape_brackets(char);
         return `[[;${hex(color)};]${char}]`;
     }, string).join('\n');
@@ -30,11 +77,12 @@ figlet.preloadFonts([font], ready);
 function render(text)
 {
     const cols = term.cols();
-    return figlet.textSync(text, {
-        font: font,
-        width: cols,
-        whitespaceBreak: true
-    });
+    return figlet.textSync(text,
+                            {
+                                font: font,
+                                width: cols,
+                                whitespaceBreak: true
+                            });
 }
 
 // Output
