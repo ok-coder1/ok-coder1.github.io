@@ -1,0 +1,11 @@
+.reboot .cmd
+{
+    font-weight: bold;
+    text-align: center;
+    font-size: 32px;
+}
+.reboot-log .cmd
+{
+    text-align: left;
+    font-size: 16px;
+}
