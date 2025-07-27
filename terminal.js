@@ -1,31 +1,37 @@
-// Set variables
+// Set variables and functions
 const currentDate = new Date();
-const rebootDate = new Date(currentDate.setSeconds(currentDate.getSeconds() + 10));
+const rebootDate = new Date(currentDate.setSeconds(currentDate.getSeconds() + 1));
+const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 // Set commands
 const commands = {
     reboot()
     {
-        term.set_prompt('').pause(true)
-        term.echo(`System reboot scheduled at <b>${rebootDate}</b>.`)
+        term.set_prompt('').pause(true);
+        term.echo(`System reboot scheduled at <b>${rebootDate}</b>.`);
         setTimeout(() => {
             term.clear();
             term.set_prompt('').pause(true)
-            term.echo('<b>Rebooting.</b>');
+            term.echo('<b>Rebooting</b>').addClass('reboot');
         }, 1000);
         setTimeout(() => {
             term.clear();
-            term.set_prompt('').pause(true)
-            term.echo('<b>Rebooting..</b>');
+            term.set_prompt('').pause(true);
+            term.echo('<b>Rebooting.</b>').addClass('reboot');
         }, 2000);
         setTimeout(() => {
-            term.set_prompt('').pause(true)
             term.clear();
-            term.echo('<b>Rebooting...</b>');
+            term.set_prompt('').pause(true);
+            term.echo('<b>Rebooting..</b>').addClass('reboot');
         }, 3000);
         setTimeout(() => {
-            location.reload(true);
+            term.set_prompt('').pause(true);
+            term.clear();
+            term.echo('<b>Rebooting...</b>').addClass('reboot');
         }, 4000);
+        setTimeout(() => {
+            location.reload(true);
+        }, 5000);
     },
     help()
     {
@@ -39,10 +45,11 @@ const commands = {
 
 // Initialise terminal
 const term = $('body').terminal(commands,
-    {
-        greetings: false,
-        checkArity: false
-    });
+                                {
+                                    greetings: false,
+                                    checkArity: false
+                                });
+
 
 // `help` command
 const formatter = new Intl.ListFormat('en',
@@ -87,8 +94,23 @@ function render(text)
 }
 
 // Output
-function ready()
+async function ready()
 {
+    term.set_prompt('').pause(true);
+    term.echo(() => `(<b>INFO</b>) [${currentDate}] Starting up...`).addClass('startup-log');
+    await sleep(1000);
+    term.echo(() => `(<b><green>SUCCESS</green></b>) [${currentDate}] Successfully loaded all modules!`);
+    await sleep(500);
+    term.echo(() => `(<b>INFO</b>) [${currentDate}] Starting up services...`);
+    await sleep(750);
+    term.echo(() => `(<b><green>SUCCESS</green></b>) [${currentDate}] Successfully started services!`);
+    await sleep(250);
+    term.echo(() => `(<b>INFO</b>) [${currentDate}] Loading terminal...`)
+    await sleep(1000);
+    term.echo(() => `(<b><green>SUCCESS</green></b>) [${currentDate}] Successfully loaded terminal!`);
+    await sleep(500);
+    term.clear()
     term.echo(() => rainbow(render('okcoder1')), { ansi: true });
-    term.echo(() => "<b><white>Hi! I'm</white> <green>okcoder1</green>!</b>")
+    term.echo(() => `<b><white>Hi! I'm</white> <green>okcoder1</green>!</b>`).addClass('intro-okcoder1');
+    term.set_prompt(`<green>guest@okcoder1</green>:<purple>~</purple>$ `).resume()
 }

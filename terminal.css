@@ -1,11 +1,14 @@
-.reboot .cmd
+.startup-log
+{
+    --size: 1.5;
+}
+.intro-okcoder1
+{
+    --size: 1;
+}
+.reboot
 {
     font-weight: bold;
     text-align: center;
-    font-size: 32px;
-}
-.reboot-log .cmd
-{
-    text-align: left;
-    font-size: 16px;
+    --size: 2;
 }
