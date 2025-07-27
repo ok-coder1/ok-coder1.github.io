@@ -50,7 +50,7 @@ const formatter = new Intl.ListFormat('en',
                                             style: 'long',
                                             type: 'conjunction',
                                         });
-const command_list = Object.keys(commands);
+const command_list = ['clear'].concat(Object.keys(commands));
 const help = formatter.format(command_list);
 
 // Colour Formatting
