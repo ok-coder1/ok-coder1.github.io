@@ -1,6 +1,6 @@
 // Set variables
 const currentDate = new Date();
-const rebootDate = currentDate.setSeconds(currentDate.getSeconds() + 10)
+const rebootDate = new Date(currentDate.setSeconds(currentDate.getSeconds() + 1));
 
 // Set commands
 const commands = {
