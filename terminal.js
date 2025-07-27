@@ -1,12 +1,13 @@
 // Set variables
 const currentDate = new Date();
+const rebootDate = currentDate.setSeconds(currentDate.getSeconds() + 10)
 
 // Set commands
 const commands = {
     reboot()
     {
         term.set_prompt('').pause(true)
-        term.echo(`System reboot scheduled at <b>${currentDate}</b>.`)
+        term.echo(`System reboot scheduled at <b>${rebootDate}</b>.`)
         setTimeout(() => {
             term.clear();
             term.set_prompt('').pause(true)
