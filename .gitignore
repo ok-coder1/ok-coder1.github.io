@@ -1,0 +1,6 @@
+# macOS Specific files
+.DS_Store
+*.DS_Store
+
+# DNS Records
+.well-known

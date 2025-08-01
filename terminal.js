@@ -96,6 +96,7 @@ function render(text)
 // Output
 async function ready()
 {
+    term.clear();
     term.set_prompt('').pause(true);
     term.echo(() => `(<b>INFO</b>) [${currentDate}] Starting up...`).addClass('startup-log');
     await sleep(1000);
@@ -109,8 +110,55 @@ async function ready()
     await sleep(1000);
     term.echo(() => `(<b><green>SUCCESS</green></b>) [${currentDate}] Successfully loaded terminal!`);
     await sleep(500);
-    term.clear()
+    term.clear();
     term.echo(() => rainbow(render('okcoder1')), { ansi: true });
-    term.echo(() => `<b><white>Hi! I'm</white> <green>okcoder1</green>!</b>`).addClass('intro-okcoder1');
+    term.echo(() => new $.terminal.FramesAnimation(
+        [
+            [
+                `<b>H</b>                               `
+            ],
+            [
+                `<b>Hi</b>                              `
+            ],
+            [
+                `<b>Hi!</b>                             `
+            ],
+            [
+                `<b>Hi! I</b>                           `
+            ],
+            [
+                `<b>Hi! I'</b>                          `
+            ],
+            [
+                `<b>Hi! I'm</b>                         `
+            ],
+            [
+                `<b>Hi! I'm <green>o</green></b>        `
+            ],
+            [
+                `<b>Hi! I'm <green>ok</green></b>       `
+            ],
+            [
+                `<b>Hi! I'm <green>okc</green></b>      `
+            ],
+            [
+                `<b>Hi! I'm <green>okco</green></b>     `
+            ],
+            [
+                `<b>Hi! I'm <green>okcod</green></b>    `
+            ],
+            [
+                `<b>Hi! I'm <green>okcode</green></b>   `
+            ],
+            [
+                `<b>Hi! I'm <green>okcoder</green></b>  `
+            ],
+            [
+                `<b>Hi! I'm <green>okcoder1</green></b> `
+            ],
+            [
+                `<b>Hi! I'm <green>okcoder1</green>!</b>`
+            ]
+        ], 1)).addClass('intro-okcoder1');
     term.set_prompt(`<green>guest@okcoder1</green>:<purple>~</purple>$ `).resume()
 }
