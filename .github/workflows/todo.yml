@@ -15,9 +15,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
+        
       - name: TODO to Issue
         uses: alstr/todo-to-issue-action@v5
         with:
