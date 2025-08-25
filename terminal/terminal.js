@@ -35,11 +35,36 @@ const commands = {
     },
     help()
     {
-        term.echo(`Commands that are <b>available</b>: ${help}`);
+        term.echo(`Commands that are available: <b>${help}<b>`);
     },
     echo(...args)
     {
         term.echo(() => args.join(' '));
+    },
+    discord()
+    {
+        term.echo(`Opening my <blue><b>Discord</blue></b> profile in a new tab...`);
+        window.open('https://discordapp.com/users/983692760072745020', '_blank');
+    },
+    twitch()
+    {
+        term.echo(`<purple><b>Twitch</purple></b>? You're gonna be <b>twitching your eye</b> when you see my streams (which I never do often)!`)
+        window.open('https://www.twitch.tv/ok_coder1', '_blank');
+    },
+    github()
+    {
+        term.echo(`<b>GitHub</b> is where I code.`);
+        window.open('https://github.com/ok-coder1', '_blank');
+    },
+    youtube()
+    {
+        term.echo(`You can see my (very bad) videos in <red><b>YouTube</red></b>.`);
+        window.open('https://youtube.com/@okcoder1', '_blank');
+    },
+    mail()
+    {
+        term.echo(`You wanna send me an <b>email<b>? You gotcha!`);
+        window.open('mailto:codershub.code@gmail.com', '_blank');
     }
 }
 
@@ -184,6 +209,7 @@ async function ready()
             ]
         ], 1)).addClass('intro-okcoder1');
         */
-       term.echo(() => `<b>Hi! I'm <green>okcoder1</green>!</b>`).addClass('intro-okcoder1');
+    term.echo(() => `<b>Hi! I'm <green>okcoder1</green>!</b>`).addClass('intro-okcoder1');
+    term.echo(() => `Use <b>help</b> to get information on commands.`)
     term.set_prompt(`<green>guest@okcoder1</green>:<purple>~</purple>$ `).resume();
 }
