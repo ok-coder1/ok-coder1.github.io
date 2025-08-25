@@ -100,65 +100,90 @@ async function ready()
     term.set_prompt('').pause(true);
     term.echo(() => `(<b>INFO</b>) [${currentDate}] Starting up...`).addClass('startup-log');
     await sleep(1000);
-    term.echo(() => `(<b><green>SUCCESS</green></b>) [${currentDate}] Successfully loaded all modules!`);
+    term.echo(() => `(<b><green>SUCCESS</green></b>) [${currentDate}] Successfully loaded all modules!`).addClass('startup-log');
     await sleep(500);
-    term.echo(() => `(<b>INFO</b>) [${currentDate}] Starting up services...`);
-    await sleep(750);
-    term.echo(() => `(<b><green>SUCCESS</green></b>) [${currentDate}] Successfully started services!`);
-    await sleep(250);
-    term.echo(() => `(<b>INFO</b>) [${currentDate}] Loading terminal...`)
+    term.echo(() => `(<b>INFO</b>) [${currentDate}] Loading jQuery...`).addClass('startup-log');
     await sleep(1000);
-    term.echo(() => `(<b><green>SUCCESS</green></b>) [${currentDate}] Successfully loaded terminal!`);
+    term.echo(() => `(<b>INFO</b>) [${currentDate}] Loading jQuery Terminal...`).addClass('startup-log');
+    await sleep(1500);
+    term.echo(() => `(<b><green>SUCCESS</green></b>) [${currentDate}] Successfully loaded jQuery!`).addClass('startup-log');
+    term.echo(() => `(<b>INFO</b>) [${currentDate}] Starting up services...`).addClass('startup-log');
+    await sleep(750);
+    term.echo(() => `(<b><green>SUCCESS</green></b>) [${currentDate}] Successfully started services!`).addClass('startup-log');
+    await sleep(250);
+    term.echo(() => `(<b>INFO</b>) [${currentDate}] Loading terminal...`).addClass('startup-log');
+    await sleep(1000);
+    term.echo(() => `(<b><green>SUCCESS</green></b>) [${currentDate}] Successfully loaded terminal!`).addClass('startup-log');
     await sleep(500);
     term.clear();
     term.echo(() => rainbow(render('okcoder1')), { ansi: true });
+    // TODO(@ok-coder1): Add back animations
+    // labels: bug, feature
+    /*
     term.echo(() => new $.terminal.FramesAnimation(
         [
             [
-                `<b>H</b>                               `
+                `<b>H</b>                               `,
+                `                                       `
             ],
             [
-                `<b>Hi</b>                              `
+                `<b>Hi</b>                              `,
+                `                                       `
             ],
             [
-                `<b>Hi!</b>                             `
+                `<b>Hi!</b>                             `,
+                `                                       `
             ],
             [
-                `<b>Hi! I</b>                           `
+                `<b>Hi! I</b>                           `,
+                `                                       `
             ],
             [
-                `<b>Hi! I'</b>                          `
+                `<b>Hi! I'</b>                          `,
+                `                                       `
             ],
             [
-                `<b>Hi! I'm</b>                         `
+                `<b>Hi! I'm</b>                         `,
+                `                                       `
             ],
             [
-                `<b>Hi! I'm <green>o</green></b>        `
+                `<b>Hi! I'm <green>o</green></b>        `,
+                `                                       `
             ],
             [
-                `<b>Hi! I'm <green>ok</green></b>       `
+                `<b>Hi! I'm <green>ok</green></b>       `,
+                `                                       `
             ],
             [
-                `<b>Hi! I'm <green>okc</green></b>      `
+                `<b>Hi! I'm <green>okc</green></b>      `,
+                `                                       `
             ],
             [
-                `<b>Hi! I'm <green>okco</green></b>     `
+                `<b>Hi! I'm <green>okco</green></b>     `,
+                `                                       `
             ],
             [
-                `<b>Hi! I'm <green>okcod</green></b>    `
+                `<b>Hi! I'm <green>okcod</green></b>    `,
+                `                                       `
             ],
             [
-                `<b>Hi! I'm <green>okcode</green></b>   `
+                `<b>Hi! I'm <green>okcode</green></b>   `,
+                `                                       `
             ],
             [
-                `<b>Hi! I'm <green>okcoder</green></b>  `
+                `<b>Hi! I'm <green>okcoder</green></b>  `,
+                `                                       `
             ],
             [
-                `<b>Hi! I'm <green>okcoder1</green></b> `
+                `<b>Hi! I'm <green>okcoder1</green></b> `,
+                `                                       `
             ],
             [
-                `<b>Hi! I'm <green>okcoder1</green>!</b>`
+                `<b>Hi! I'm <green>okcoder1</green>!</b>`,
+                `                                       `
             ]
         ], 1)).addClass('intro-okcoder1');
-    term.set_prompt(`<green>guest@okcoder1</green>:<purple>~</purple>$ `).resume()
+        */
+       term.echo(() => `<b>Hi! I'm <green>okcoder1</green>!</b>`).addClass('intro-okcoder1');
+    term.set_prompt(`<green>guest@okcoder1</green>:<purple>~</purple>$ `).resume();
 }

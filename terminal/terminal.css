@@ -1,11 +1,20 @@
+@font-face
+{
+    font-family: linux;
+    src: url(../fonts/vtsr.woff);
+}
+
 .startup-log
 {
     --size: 1.5;
+    font-family: linux;
 }
+
 .intro-okcoder1
 {
     --size: 1;
 }
+
 .reboot
 {
     font-weight: bold;
