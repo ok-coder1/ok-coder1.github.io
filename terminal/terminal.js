@@ -43,7 +43,7 @@ const commands = {
     },
     discord()
     {
-        term.echo(`Opening my <blue><b>Discord</blue></b> profile in a new tab...`);
+        term.echo(`You wanna talk with me? Talk to me in <blue><b>Discord</blue></b>!`);
         window.open('https://discordapp.com/users/983692760072745020', '_blank');
     },
     hackclub_slack()
