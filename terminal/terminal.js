@@ -46,9 +46,14 @@ const commands = {
         term.echo(`Opening my <blue><b>Discord</blue></b> profile in a new tab...`);
         window.open('https://discordapp.com/users/983692760072745020', '_blank');
     },
+    hackclub_slack()
+    {
+        term.echo(`(Hack Club) This is where I usually <yellow><b>Slack</yellow></b> off.`);
+        window.open('https://hackclub.slack.com/team/U08F95SST0V', '_blank');
+    },
     twitch()
     {
-        term.echo(`<purple><b>Twitch</purple></b>? You're gonna be <b>twitching your eye</b> when you see my streams (which I never do often)!`)
+        term.echo(`<purple><b>Twitch</purple></b>? You're gonna be <b>twitching your eye</b> when you see my streams (which I never do often)!`);
         window.open('https://www.twitch.tv/ok_coder1', '_blank');
     },
     github()
