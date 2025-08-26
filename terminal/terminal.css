@@ -21,3 +21,8 @@
     text-align: center;
     --size: 2;
 }
+
+.command-click-help
+{
+    cursor: pointer;
+}
