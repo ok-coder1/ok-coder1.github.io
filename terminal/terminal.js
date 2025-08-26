@@ -136,17 +136,17 @@ async function ready()
     await sleep(1000);
     term.echo(() => `(<b>INFO</b>) [${currentDate}] Loading jQuery Terminal...`).addClass('startup-log');
     await sleep(1500);
-    term.echo(() => `(<b><green>SUCCESS</green></b>) [${currentDate}] Successfully loaded jQuery!`).addClass('startup-log');
-    term.echo(() => `(<b>INFO</b>) [${currentDate}] Starting up services...`).addClass('startup-log');
+    term.echo(`(<b><green>SUCCESS</green></b>) [${currentDate}] Successfully loaded jQuery!`).addClass('startup-log');
+    term.echo(`(<b>INFO</b>) [${currentDate}] Starting up services...`).addClass('startup-log');
     await sleep(750);
-    term.echo(() => `(<b><green>SUCCESS</green></b>) [${currentDate}] Successfully started services!`).addClass('startup-log');
+    term.echo(`(<b><green>SUCCESS</green></b>) [${currentDate}] Successfully started services!`).addClass('startup-log');
     await sleep(250);
-    term.echo(() => `(<b>INFO</b>) [${currentDate}] Loading terminal...`).addClass('startup-log');
+    term.echo(`(<b>INFO</b>) [${currentDate}] Loading terminal...`).addClass('startup-log');
     await sleep(1000);
-    term.echo(() => `(<b><green>SUCCESS</green></b>) [${currentDate}] Successfully loaded terminal!`).addClass('startup-log');
+    term.echo(`(<b><green>SUCCESS</green></b>) [${currentDate}] Successfully loaded terminal!`).addClass('startup-log');
     await sleep(500);
     term.clear();
-    term.echo(() => rainbow(render('okcoder1')), { ansi: true });
+    term.echo(rainbow(render('okcoder1')), { ansi: true });
     // TODO(@ok-coder1): Add back animations
     // labels: bug, feature
     /*
