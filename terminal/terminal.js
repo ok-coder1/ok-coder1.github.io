@@ -408,7 +408,25 @@ const commands = {
             '* <a target="_blank" href="https://hackclub.com"> Hack Club for hosting the main website',
             ''
         ].join('\n');
-    }
+    }/*,
+    // TODO(@ok-coder1): Make `record` command work again
+    record(...args)
+    {
+        if (args == `start`)
+        {
+            this.history_state(true);
+            this.echo(`Recording started!`);
+        }
+        else if (args == `stop`)
+        {
+            this.history_state(false);
+            this.echo(`Recording stopped!\nHere's the link to your terminal session: ${window.location.href}`)
+        }
+        else
+        {
+            this.echo(`Usage: <b>record start|stop</b>\nRecords a terminal session and gives you an URL to share it.`)
+        }
+    }*/
 };
 
 // Set prompt
@@ -440,7 +458,9 @@ const term = $('body').terminal(commands,
                                         return Object.keys(commands);
                                     },
                                     exit: false,
-                                    prompt
+                                    prompt/*,
+                                    execHash: true,
+                                    execAnimation: true*/
                                 });
 
 // `help` command
