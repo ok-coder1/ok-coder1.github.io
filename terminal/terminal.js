@@ -410,6 +410,7 @@ const commands = {
         ].join('\n');
     }/*,
     // TODO(@ok-coder1): Make `record` command work again
+    // Issue URL: https://github.com/ok-coder1/ok-coder1.github.io/issues/2
     record(...args)
     {
         if (args == `start`)
