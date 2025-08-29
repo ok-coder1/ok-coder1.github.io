@@ -337,7 +337,7 @@ const commands = {
     },
     async joke()
     {
-        const jokeAPI = 'https://v2.jokeapi.dev/joke/Programming';
+        const jokeAPI = 'https://v2.jokeapi.dev/joke/Programming?safe-mode&blacklistFlags=nsfw,religious,political,racist,sexist,explicit';
         const res = await fetch(jokeAPI);
         const data = await res.json();
         if (data.type == 'twopart')
