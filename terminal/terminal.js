@@ -19,6 +19,7 @@ const files = [
 const executables = [
     // TODO(@ok-coder1): Add executables
     // Issue URL: https://github.com/ok-coder1/ok-coder1.github.io/issues/1
+    // labels: feature
     ''
 ]
 
@@ -411,6 +412,7 @@ const commands = {
     }/*,
     // TODO(@ok-coder1): Make `record` command work again
     // Issue URL: https://github.com/ok-coder1/ok-coder1.github.io/issues/2
+    // labels: bug, feature
     record(...args)
     {
         if (args == `start`)
