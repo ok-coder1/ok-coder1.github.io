@@ -18,6 +18,7 @@ const files = [
 
 const executables = [
     // TODO(@ok-coder1): Add executables
+    // Issue URL: https://github.com/ok-coder1/ok-coder1.github.io/issues/1
     ''
 ]
 
