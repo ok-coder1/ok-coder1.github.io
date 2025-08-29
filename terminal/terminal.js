@@ -1,33 +1,118 @@
 // Set variables and functions
+const user = 'guest';
+const server = 'okcoder1';
+const root = '~';
+let cwd = root;
+const path = 'projects/contributions/skills';
+const dirs = path.split('/');
 var currentDate = new Date();
 const rebootDate = new Date(currentDate.setSeconds(currentDate.getSeconds() + 1));
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+const getLang = () => navigator.language || navigator.browserLanguage || ( navigator.languages || [ "en" ] ) [ 0 ];
+const locale = getLang();
+
+// Files, executables & directories
+const files = [
+    'README.md'
+]
+
+const executables = [
+    // TODO(@ok-coder1): Add executables
+    ''
+]
+
+const directories = {
+    projects:
+    [
+        '',
+        '<white>My Projects</white>',
+        [
+            [
+             'Matrix Blocks',
+             'https://modrinth.com/mod/matrix-blocks',
+             'Minecraft mod that adds blocks with the matrix image'
+            ],
+            [
+             'Portfolio Website',
+             'https://okcoder1.hackclub.app/terminal',
+             'My own website'
+            ]
+        ].map(([name, url, description = '']) => {
+            return `* <a target="_blank" href="${url}">${name}</a> &mdash; <white>${description}</white>`;
+        }),
+        ''
+    ].flat(),
+    contributions:
+    [
+        '',
+        `<white>Projects I've contributed to</white>`,
+        [
+            [
+                'SnapXL (Team, Documentation)',
+                'https://github.com/SnapXL/SnapX',
+                'Capture, share, and boost productivity. All in one.'
+            ],
+            [
+                'waka-readme-stats',
+                'https://github.com/anmol098/waka-readme-stats',
+                `This GitHub Action adds cool dev metrics to your GitHub profile's README.`
+            ]
+        ].map(([name, url, description = '']) => {
+            return `* <a target="_blank" href="${url}">${name}</a> &mdash; <white>${description}</white>`;
+        }),
+        ''
+    ].flat(),
+    skills:
+    [
+        '',
+        '<white>Languages that I use</white>',
+        [
+            'Python'
+        ].map(lang => `* <yellow>${lang}</yellow>`),
+        '',
+        '<white>Libraries that I use</white>',
+        [
+            'Kivy',
+            'discord.http',
+        ].map(lib => `* <green>${lib}</green>`),
+        '',
+        '<white>OSes/Tools</white>',
+        [
+            'Visual Studio Code',
+            '<orange>git</orange>',
+            '<green>MongoDB</green>',
+            '<white>macOS</white>',
+            '<grey>Terminal</grey>'
+        ].map(tools => `* <blue>${tools}</blue>`),
+        ''
+    ].flat()
+};
 
 // Set commands
 const commands = {
     reboot()
     {
-        term.set_prompt('').pause(true);
-        term.echo(`System reboot scheduled at <b>${rebootDate}</b>.`);
+        this.set_prompt('').pause(true);
+        this.echo(`System reboot scheduled at <b>${rebootDate}</b>.`);
         setTimeout(() => {
-            term.clear();
-            term.set_prompt('').pause(true)
-            term.echo('<b>Rebooting</b>').addClass('reboot');
+            this.clear();
+            this.set_prompt('').pause(true)
+            this.echo('<b>Rebooting</b>').addClass('reboot');
         }, 1000);
         setTimeout(() => {
-            term.clear();
-            term.set_prompt('').pause(true);
-            term.echo('<b>Rebooting.</b>').addClass('reboot');
+            this.clear();
+            this.set_prompt('').pause(true);
+            this.echo('<b>Rebooting.</b>').addClass('reboot');
         }, 2000);
         setTimeout(() => {
-            term.clear();
-            term.set_prompt('').pause(true);
-            term.echo('<b>Rebooting..</b>').addClass('reboot');
+            this.clear();
+            this.set_prompt('').pause(true);
+            this.echo('<b>Rebooting..</b>').addClass('reboot');
         }, 3000);
         setTimeout(() => {
-            term.set_prompt('').pause(true);
-            term.clear();
-            term.echo('<b>Rebooting...</b>').addClass('reboot');
+            this.set_prompt('').pause(true);
+            this.clear();
+            this.echo('<b>Rebooting...</b>').addClass('reboot');
         }, 4000);
         setTimeout(() => {
             location.reload(true);
@@ -35,14 +120,29 @@ const commands = {
     },
     fastfetch()
     {
+        function ConvertSeconds(n) {
+            var day = parseInt(n / (24 * 3600));
+    
+            n = n % (24 * 3600);
+            var hour = parseInt(n / 3600);
+    
+            n %= 3600;
+            var minutes = n / 60;
+    
+            n %= 60;
+            var seconds = n;
+            
+            return day + " " + "days " + hour + " " + "hours " + minutes.toFixed() + " " + "minutes " + seconds.toFixed() + " " + "seconds ";
+        }
+        var upTimeSinceOpened = ConvertSeconds(performance.now() / 1000);
         var fastfetch_ascii = `        _,met$$$$$gg.
      ,g$$$$$$$$$$$$$$$P.
    ,g$$P""       """Y$$.".     guest@okcoder1
-  ,$$P'              \`$$$.     -------------
+  ,$$P'              \`$$$.     --------------
 ',$$P       ,ggs.     \`$$b:    OS: Debian GNU/Linux 13 (trixie) x86_64
 \`d$$'     ,$P"'   .    $$$     Host: KVM/QEMU Standard PC (i440FX + PIIX, 1996) (pc-i440fx-9.2)
  $$P      d$'     ,    $$P     Kernel: Linux 6.12.41+deb13-amd64
- $$:      $$.   -    ,d$$'     Uptime: 1 day, 1 hour, 42 mins
+ $$:      $$.   -    ,d$$'     Uptime: ${upTimeSinceOpened}
  $$;      Y$b._   _,d$P'       Packages: 4372 (dpkg), 47 (nix-default)
  Y$$.    \`.\`"Y$$$$P"'          Shell: bash 5.2.37
  \`$$b      "-.__               Cursor: Adwaita
@@ -53,147 +153,294 @@ const commands = {
          \`"Y$b._               Swap: 79.22 GiB / 470.39 GiB (17%)
              \`""""             Disk (/): 2.52 TiB / 2.98 TiB (85%) - ext4
                                Local IP (ens18): 37.27.51.34/32
-                               Locale: en_US.UTF-8`;
-        term.echo(rainbow(fastfetch_ascii));
+                               Locale: ${locale}`;
+        this.echo(rainbow(fastfetch_ascii));
     },
-    ls()
-    {
-        term.echo(`README.md        `);
-    },
-    dir()
-    {
-        term.echo(`README.md`);
+    ls(dir = null) {
+        const dirs = path.split('/');
+        function print_home()
+        {
+            term.echo(dirs.map(dir => {
+                return `<blue class="directory">${dir}</blue>`;
+            }).join('\n'));
+            term.echo(executables.map(executable => {
+                return `<green class=command-click>${executable}</green>`;
+            }).join('\n'));
+            term.echo(files.map(file => {
+                return `<grey>${file}</grey>`;
+            }).join('\n'));
+       }
+        if (dir)
+        {
+            if (dir.match(/^~\/?$/))
+            {
+                print_home();
+            }
+            else if (dir.startsWith('~/'))
+            {
+                const path = dir.substring(2);
+                const dirs = path.split('/');
+                if (dirs.length > 1)
+                {
+                    this.error(`ls: ${dir}: No such file or directory`);
+                }
+                else
+                {
+                    const dir = dirs[0];
+                    this.echo(directories[dir].join('\n'));
+                }
+            }
+            else if (cwd === root)
+            {
+                if (dir in directories)
+                {
+                    this.echo(directories[dir].join('\n'));
+                }
+                else
+                {
+                    this.error(`ls: ${dir}: No such file or directory`);
+                }
+            }
+            else if (dir === '..')
+            {
+                print_home();
+            }
+            else
+            {
+                this.error(`ls: ${dir}: No such file or directory`);
+            }
+        }
+        else if (cwd === root)
+        {
+            print_home();
+        }
+        else
+        {
+            const dir = cwd.substring(2);
+            this.echo(directories[dir].join('\n'));
+        }
     },
     whoami()
     {
-        term.echo(`guest`);
+        this.echo(`${user}`);
     },
     pwd()
     {
-        term.echo(`/home/guest`)
+        this.echo(`${path}`)
     },
     async sha1sum(...args)
     {
-        const input = args.join(' ');
-        const getSHA1Hash = async (input) => {
-            const textAsBuffer = new TextEncoder().encode(input);
-            const hashBuffer = await window.crypto.subtle.digest("SHA-1", textAsBuffer);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            const hash = hashArray
-              .map((item) => item.toString(16).padStart(2, "0"))
-              .join("");
-            return hash;
-        };
-        const hashed = await getSHA1Hash(input);
-        term.echo(`${hashed} ${input}`);
+        if (args.length > 0 && args.join(' ').trim() !== '')
+        {
+            const input = args.join(' ');
+            const getSHA1Hash = async (input) => {
+                const textAsBuffer = new TextEncoder().encode(input);
+                const hashBuffer = await window.crypto.subtle.digest("SHA-1", textAsBuffer);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                const hash = hashArray.map((item) => item.toString(16).padStart(2, "0")).join("");
+                return hash;
+            };
+            const hashed = await getSHA1Hash(input);
+            this.echo(`${hashed} ${input}`);
+        }
     },
     async sha256sum(...args)
     {
-        const input = args.join(' ');
-        const getSHA256Hash = async (input) => {
-            const textAsBuffer = new TextEncoder().encode(input);
-            const hashBuffer = await window.crypto.subtle.digest("SHA-256", textAsBuffer);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            const hash = hashArray
-              .map((item) => item.toString(16).padStart(2, "0"))
-              .join("");
-            return hash;
-        };
-        const hashed = await getSHA256Hash(input);
-        term.echo(`${hashed} ${input}`);
+        if (args.length > 0 && args.join(' ').trim() !== '')
+        {
+            const input = args.join(' ');
+            const getSHA256Hash = async (input) => {
+                const textAsBuffer = new TextEncoder().encode(input);
+                const hashBuffer = await window.crypto.subtle.digest("SHA-256", textAsBuffer);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                const hash = hashArray.map((item) => item.toString(16).padStart(2, "0")).join("");
+                return hash;
+            };
+            const hashed = await getSHA256Hash(input);
+            this.echo(`${hashed} ${input}`);
+        }
     },
     async sha384sum(...args)
     {
-        const input = args.join(' ');
-        const getSHA384Hash = async (input) => {
-            const textAsBuffer = new TextEncoder().encode(input);
-            const hashBuffer = await window.crypto.subtle.digest("SHA-384", textAsBuffer);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            const hash = hashArray
-              .map((item) => item.toString(16).padStart(2, "0"))
-              .join("");
-            return hash;
-        };
-        const hashed = await getSHA384Hash(input);
-        term.echo(`${hashed} ${input}`);
+        if (args.length > 0 && args.join(' ').trim() !== '')
+        {
+            const input = args.join(' ');
+            const getSHA384Hash = async (input) => {
+                const textAsBuffer = new TextEncoder().encode(input);
+                const hashBuffer = await window.crypto.subtle.digest("SHA-384", textAsBuffer);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                const hash = hashArray.map((item) => item.toString(16).padStart(2, "0")).join("");
+                return hash;
+            };
+            const hashed = await getSHA384Hash(input);
+            this.echo(`${hashed} ${input}`);
+        }
     },
     async sha512sum(...args)
     {
-        const input = args.join(' ');
-        const getSHA512Hash = async (input) => {
-            const textAsBuffer = new TextEncoder().encode(input);
-            const hashBuffer = await window.crypto.subtle.digest("SHA-512", textAsBuffer);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            const hash = hashArray
-              .map((item) => item.toString(16).padStart(2, "0"))
-              .join("");
-            return hash;
-        };
-        const hashed = await getSHA512Hash(input);
-        term.echo(`${hashed} ${input}`);
+        if (args.length > 0 && args.join(' ').trim() !== '')
+        {
+            const input = args.join(' ');
+            const getSHA512Hash = async (input) => {
+                const textAsBuffer = new TextEncoder().encode(input);
+                const hashBuffer = await window.crypto.subtle.digest("SHA-512", textAsBuffer);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                const hash = hashArray.map((item) => item.toString(16).padStart(2, "0")).join("");
+                return hash;
+            };
+            const hashed = await getSHA512Hash(input);
+            this.echo(`${hashed} ${input}`);
+        }
     },
     cat(...args)
     {
         if (args == "README.md")
         {
-            term.echo(`Hi there! I'm <b><green>okcoder1</green></b> as you may have seen above.\nI'm a <b>developer</b>. That's it?\nI mainly use <b><yellow>Python</yellow></b> (even though this website is in <b><i>JavaScript</i></b>) and <b>macOS</b> is my daily driver.\nCheckout (<i>git</i> it?) my (un)cool projects by typing '<b>github</b>'!\nType '<b>help</b>' to see more commands.`);
+            this.echo(`Hi there! I'm <b><green>okcoder1</green></b> as you may have seen above.\nI'm a <b>developer</b>. That's it?\nI mainly use <b><yellow>Python</yellow></b> (even though this website is in <b><i>JavaScript</i></b>) and <b>macOS</b> is my daily driver.\nCheckout (<i>git</i> it?) my (un)cool projects by typing '<b>github</b>'!\nType <white>help</white> to see more commands.`);
         }
         else if (args == "")
         {
-            term.echo(`cat: No file specified`);
+            this.error(`cat: No file specified`);
         }
         else
         {
-            term.echo(`cat: <b>${args}</b>: No such file or directory`)
+            this.error(`cat: ${args}: No such file or directory`)
+        }
+    },
+    cd(dir = null) {
+        if (dir === null || (dir === '..' && cwd !== root))
+        {
+            cwd = root;
+        }
+        else if (dir.startsWith('~/') && dirs.includes(dir.substring(2)))
+        {
+            cwd = dir;
+        }
+        else if (dir.startsWith('../') && cwd !== root && dirs.includes(dir.substring(3)))
+        {
+            cwd = root + '/' + dir.substring(3);
+        }
+        else if (dirs.includes(dir))
+        {
+            cwd = root + '/' + dir;
+        }
+        else
+        {
+            this.error(`cd: ${dir}: No such file or directory`);
         }
     },
     help()
     {
-        term.echo(`Commands: <b>${help}<b>`);
+        this.echo(`Commands: <b>${help}<b>`);
+    },
+    async joke()
+    {
+        const jokeAPI = 'https://v2.jokeapi.dev/joke/Programming';
+        const res = await fetch(jokeAPI);
+        const data = await res.json();
+        if (data.type == 'twopart')
+        {
+            this.animation(async () => {
+                await this.echo(`Question: ${data.setup}`, {
+                    delay: 50,
+                    typing: true
+                });
+                await this.echo(`Answer: ${data.delivery}`, {
+                    delay: 50,
+                    typing: true
+                });
+            });
+        }
+        else if (data.type == 'single')
+        {
+            this.echo(data.joke, {
+                delay: 50,
+                typing: true
+            });
+        }
     },
     echo(...args)
     {
-        term.echo(() => args.join(' '));
+        if (args.length > 0) {
+            this.echo(args.join(' '));
+        }
     },
     discord()
     {
-        term.echo(`You wanna talk with me? Talk to me in <blue><b>Discord</blue></b>!`);
+        this.echo(`You wanna talk with me? Talk to me in <blue><b>Discord</blue></b>!`);
         window.open('https://discordapp.com/users/983692760072745020', '_blank');
     },
     hackclub_slack()
     {
-        term.echo(`(Hack Club) This is where I usually <yellow><b>Slack</yellow></b> off.\n<b><red>WARNING</red>: You need to be a member of Hack Club to view this (you need to be <i>18</i> or under to join).</b>`);
+        this.echo(`(Hack Club) This is where I usually <yellow><b>Slack</yellow></b> off.\n<b><red>WARNING</red>: You need to be a member of Hack Club to view this (you need to be <u><i>18 or under</i></u> to join).</b>`);
         window.open('https://hackclub.slack.com/team/U08F95SST0V', '_blank');
     },
     twitch()
     {
-        term.echo(`<purple><b>Twitch</purple></b>? My streams (which I never do) are bad. Just a warning.`);
+        this.echo(`<purple><b>Twitch</purple></b>? My streams (which I never do) are bad. Just a warning.`);
         window.open('https://www.twitch.tv/ok_coder1', '_blank');
     },
     github()
     {
-        term.echo(`<b>GitHub</b> is where I code.`);
+        this.echo(`<white><b>GitHub</b></white> is where I code.`);
         window.open('https://github.com/ok-coder1', '_blank');
     },
     youtube()
     {
-        term.echo(`You can see my (very bad) videos in <red><b>YouTube</red></b>.`);
+        this.echo(`You can see my (very bad) videos in <red><b>YouTube</red></b>.`);
         window.open('https://youtube.com/@okcoder1', '_blank');
     },
     mail()
     {
-        term.echo(`You wanna send me an <b>email<b>? You gotcha!`);
+        this.echo(`You wanna send me an <white><b>email</b></white>? You gotcha!`);
         window.open('mailto:codershub.code@gmail.com', '_blank');
+    },
+    credits()
+    {
+        return [
+            '',
+            '<white>Used libraries for this website:</white>',
+            '* <a target="_blank" href="https://terminal.jcubic.pl">jQuery Terminal</a>',
+            '* <a target="_blank" href="https://github.com/patorjk/figlet.js">Figlet.js</a>',
+            '* <a target="_blank" href="https://github.com/jcubic/isomorphic-lolcat">Isomorphic Lolcat</a>',
+            '* <a target="_blank" href="https://jokeapi.dev">Joke API</a>',
+            '* <a target="_blank" href="https://hackclub.com"> Hack Club for hosting the main website',
+            ''
+        ].join('\n');
     }
+};
+
+// Set prompt
+function prompt()
+{
+    return `<green>${user}@${server}</green>:<purple>${cwd}</purple>$ `;
 }
 
 // Initialise terminal
 const term = $('body').terminal(commands,
                                 {
                                     greetings: false,
-                                    checkArity: false
+                                    checkArity: false,
+                                    completion(string)
+                                    {
+                                        const cmd = this.get_command();
+                                        const { name, rest } = $.terminal.parse_command(cmd);
+                                        if (['cd', 'ls'].includes(name)) {
+                                            if (rest.startsWith('~/')) {
+                                                return dirs.map(dir => `~/${dir}`);
+                                            }
+                                            if (rest.startsWith('../') && cwd != root) {
+                                                return dirs.map(dir => `../${dir}`);
+                                            }
+                                            if (cwd === root) {
+                                                return dirs;
+                                            }
+                                        }
+                                        return Object.keys(commands);
+                                    },
+                                    exit: false,
+                                    prompt
                                 });
-
 
 // `help` command
 const formatter = new Intl.ListFormat('en',
@@ -201,15 +448,11 @@ const formatter = new Intl.ListFormat('en',
                                             style: 'long',
                                             type: 'conjunction',
                                         });
-const command_list = ['clear'].concat(Object.keys(commands));
+const command_list = ['clear'].concat(Object.keys(commands)).sort();
 const formatted_list = command_list.map(cmd => {
-    return `<white class="command-click-help">${cmd}</white>`;
+    return `<white class="command-click">${cmd}</white>`;
 });
 const help = formatter.format(formatted_list);
-term.on('click', '.command-click-help', function() {
-    const command_click = $(this).text();
-    term.exec(command_click);
- });
 
 // Colour Formatting
 function rand(max) {
@@ -246,8 +489,28 @@ function render(text)
 // Output
 async function ready()
 {
+    // Formatting of terminal
+    const regex = new RegExp(`^\s*(${command_list.join('|')})(\s?.*)`);
+    $.terminal.new_formatter([regex, function(_, command, args) {
+        return `<white class=command-click>${command}</white><green>${args}</green>`;
+    }]);
+    $.terminal.xml_formatter.tags.green = (attrs) => {
+        return `[[;#44D544;;${attrs.class}]`;
+    };
+    $.terminal.xml_formatter.tags.blue = (attrs) => {
+        return `[[;#55F;;${attrs.class}]`;
+    };
+    term.on('click', '.command-click', function() {
+        const command = $(this).data('text');
+        term.exec(command, { delay: 25, typing: true });
+    });
+    term.on('click', '.directory', function() {
+        const dir = $(this).data('text');
+        term.exec(`cd ~/${dir}`);
+    });
+
+    term.pause();
     term.clear();
-    term.set_prompt('').pause(true);
     var currentDate = new Date();
     term.echo(() => `(<b>INFO</b>) [${currentDate}] Starting up...`).addClass('startup-log');
     var currentDate = new Date();
@@ -274,77 +537,13 @@ async function ready()
     await sleep(1000);
     term.echo(`(<b><green>SUCCESS</green></b>) [${currentDate}] Successfully loaded terminal!`).addClass('startup-log');
     var currentDate = new Date();
-    await sleep(500);
+    term.echo(`(<b>INFO</b>) [${currentDate}] Starting up terminal...`).addClass('startup-log');
+    await sleep(1000);
     term.clear();
+
+    term.resume();
     term.echo(rainbow(render('okcoder1')), { ansi: true });
-    // TODO(@ok-coder1): Add back animations
-    // labels: bug, feature
-    /*
-    term.echo(() => new $.terminal.FramesAnimation(
-        [
-            [
-                `<b>H</b>                               `,
-                `                                       `
-            ],
-            [
-                `<b>Hi</b>                              `,
-                `                                       `
-            ],
-            [
-                `<b>Hi!</b>                             `,
-                `                                       `
-            ],
-            [
-                `<b>Hi! I</b>                           `,
-                `                                       `
-            ],
-            [
-                `<b>Hi! I'</b>                          `,
-                `                                       `
-            ],
-            [
-                `<b>Hi! I'm</b>                         `,
-                `                                       `
-            ],
-            [
-                `<b>Hi! I'm <green>o</green></b>        `,
-                `                                       `
-            ],
-            [
-                `<b>Hi! I'm <green>ok</green></b>       `,
-                `                                       `
-            ],
-            [
-                `<b>Hi! I'm <green>okc</green></b>      `,
-                `                                       `
-            ],
-            [
-                `<b>Hi! I'm <green>okco</green></b>     `,
-                `                                       `
-            ],
-            [
-                `<b>Hi! I'm <green>okcod</green></b>    `,
-                `                                       `
-            ],
-            [
-                `<b>Hi! I'm <green>okcode</green></b>   `,
-                `                                       `
-            ],
-            [
-                `<b>Hi! I'm <green>okcoder</green></b>  `,
-                `                                       `
-            ],
-            [
-                `<b>Hi! I'm <green>okcoder1</green></b> `,
-                `                                       `
-            ],
-            [
-                `<b>Hi! I'm <green>okcoder1</green>!</b>`,
-                `                                       `
-            ]
-        ], 1)).addClass('intro-okcoder1');
-        */
-    term.echo(() => `<b>Hi! I'm <green>okcoder1</green>!</b>`).addClass('intro-okcoder1');
-    term.echo(() => `Use <b>help</b> to get information on commands.`)
-    term.set_prompt(`<green>guest@okcoder1</green>:<purple>~</purple>$ `).resume();
+    term.echo(`<b>Hi! I'm <green>okcoder1</green>!</b>`, { delay: 75, typing: true });
+    await sleep(1350);
+    term.echo(`Type <white>help</white> to get information on commands.`, { delay: 50, typing: true });
 }

@@ -10,11 +10,6 @@
     font-family: linux;
 }
 
-.intro-okcoder1
-{
-    --size: 1;
-}
-
 .reboot
 {
     font-weight: bold;
@@ -22,7 +17,7 @@
     --size: 2;
 }
 
-.command-click-help
+.command-click, .directory
 {
     cursor: pointer;
 }
