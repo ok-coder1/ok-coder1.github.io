@@ -1,17 +1,23 @@
 @font-face
 {
     font-family: linux;
-    src: url(../fonts/vtsr.woff);
+    src: url(../fonts/osd_mono.ttf);
 }
 
 .startup-log
 {
+    --font: linux;
     --size: 1.5;
-    font-family: linux;
+}
+
+.intro
+{
+    --font: monospace;
 }
 
 .reboot
 {
+    --font: linux;
     font-weight: bold;
     text-align: center;
     --size: 2;

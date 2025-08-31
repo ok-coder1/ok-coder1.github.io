@@ -228,7 +228,7 @@ const commands = {
     },
     pwd()
     {
-        this.echo(`${path}`)
+        this.echo(`${cwd}`)
     },
     async sha1sum(...args)
     {
@@ -447,24 +447,32 @@ const term = $('body').terminal(commands,
                                     {
                                         const cmd = this.get_command();
                                         const { name, rest } = $.terminal.parse_command(cmd);
-                                        if (['cd', 'ls'].includes(name)) {
-                                            if (rest.startsWith('~/')) {
+                                        if (['cd', 'ls'].includes(name))
+                                        {
+                                            if (rest.startsWith('~/'))
+                                            {
                                                 return dirs.map(dir => `~/${dir}`);
                                             }
-                                            if (rest.startsWith('../') && cwd != root) {
+                                            if (rest.startsWith('../') && cwd != root)
+                                            {
                                                 return dirs.map(dir => `../${dir}`);
                                             }
-                                            if (cwd === root) {
+                                            if (cwd === root)
+                                            {
                                                 return dirs;
                                             }
                                         }
                                         return Object.keys(commands);
                                     },
                                     exit: false,
-                                    prompt/*,
-                                    execHash: true,
-                                    execAnimation: true*/
-                                });
+                                    prompt,
+                                    // TODO(@ok-coder1): Make `record` command work again
+                                    // Issue URL: https://github.com/ok-coder1/ok-coder1.github.io/issues/2
+                                    // labels: bug, feature
+                                    // execHash: true,
+                                    execAnimation: true
+                                }
+);
 
 // `help` command
 const formatter = new Intl.ListFormat('en',
@@ -566,8 +574,9 @@ async function ready()
     term.clear();
 
     term.resume();
-    term.echo(rainbow(render('okcoder1')), { ansi: true });
-    term.echo(`<b>Hi! I'm <green>okcoder1</green>!</b>`, { delay: 75, typing: true });
-    await sleep(1350);
-    term.echo(`Type <white>help</white> to get information on commands.`, { delay: 50, typing: true });
+    term.echo(rainbow(render('okcoder1')), { ansi: true }).addClass('intro');
+    term.animation(async () => {
+        await term.echo(`<b>Hi! I'm <green>okcoder1</green>!</b>`, { delay: 75, typing: true });
+        await term.echo(`Type <white>help</white> to get information on commands.`, { delay: 50, typing: true });
+    });
 }
