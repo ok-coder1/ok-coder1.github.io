@@ -20,7 +20,8 @@ const executables = [
     // TODO(@ok-coder1): Add executables
     // Issue URL: https://github.com/ok-coder1/ok-coder1.github.io/issues/1
     // labels: feature
-    ''
+    // `joke` is a placeholder (it's also a program that's not there by default)
+    'joke'
 ]
 
 const directories = {
@@ -409,6 +410,18 @@ const commands = {
             '* <a target="_blank" href="https://hackclub.com"> Hack Club for hosting the main website',
             ''
         ].join('\n');
+    },
+    rm(...args)
+    {
+        if (args != "")
+        {
+            const input = args.join(" ");
+            if (input == "-rf /" || "-rf ./" || "-rf / --no-preserve-root" || "-rf ./ --no-preserve-root")
+            {
+                this.echo(`<b>No 😃.</b> BTW here's a joke for you:`);
+                this.exec(`joke`);
+            }
+        }
     }/*,
     // TODO(@ok-coder1): Make `record` command work again
     // Issue URL: https://github.com/ok-coder1/ok-coder1.github.io/issues/2
@@ -541,6 +554,7 @@ async function ready()
         term.exec(`cd ~/${dir}`);
     });
 
+    // Fake startup
     term.pause();
     term.clear();
     var currentDate = new Date();
