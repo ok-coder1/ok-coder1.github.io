@@ -20,7 +20,7 @@ const executables = [
     // TODO(@ok-coder1): Add executables
     // Issue URL: https://github.com/ok-coder1/ok-coder1.github.io/issues/1
     // labels: feature
-    // `joke` is a placeholder (it's also a program that's not there by default)
+    // `joke` is a placeholder (it's also a command)
     'joke'
 ]
 
@@ -31,14 +31,19 @@ const directories = {
         '<white>My Projects</white>',
         [
             [
-             'Matrix Blocks',
-             'https://modrinth.com/mod/matrix-blocks',
-             'Minecraft mod that adds blocks with the matrix image'
+                'Matrix Blocks',
+                'https://modrinth.com/mod/matrix-blocks',
+                'Minecraft mod that adds blocks with the matrix image'
             ],
             [
-             'Portfolio Website',
-             'https://okcoder1.hackclub.app/terminal',
-             'My own website'
+                'Portfolio Website',
+                'https://okcoder1.hackclub.app/terminal',
+                'The website which you are on right now'
+            ],
+            [
+                'web_block',
+                'https://pypi.org/project/web-block/',
+                'A simple Python module that blocks websites'
             ]
         ].map(([name, url, description = '']) => {
             return `* <a target="_blank" href="${url}">${name}</a> &mdash; <white>${description}</white>`;
@@ -51,7 +56,7 @@ const directories = {
         `<white>Projects I've contributed to</white>`,
         [
             [
-                'SnapXL (Team, Documentation)',
+                'SnapX (Team, Documentation)',
                 'https://github.com/SnapXL/SnapX',
                 'Capture, share, and boost productivity. All in one.'
             ],
@@ -554,7 +559,7 @@ async function ready()
         term.exec(`cd ~/${dir}`);
     });
 
-    // Fake startup
+    // Startup
     term.pause();
     term.clear();
     var currentDate = new Date();
