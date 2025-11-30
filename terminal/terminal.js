@@ -63,7 +63,7 @@ const directories = {
             [
                 'waka-readme-stats',
                 'https://github.com/anmol098/waka-readme-stats',
-                `This GitHub Action adds cool dev metrics to your GitHub profile's README.`
+                `This GitHub Action adds your WakaTime statistics to your GitHub profile's README.`
             ]
         ].map(([name, url, description = '']) => {
             return `* <a target="_blank" href="${url}">${name}</a> &mdash; <white>${description}</white>`;
