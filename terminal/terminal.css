@@ -23,6 +23,14 @@
     --size: 2;
 }
 
+.poweroff
+{
+    --font: linux;
+    font-weight: bold;
+    text-align: center;
+    --size: 2;
+}
+
 .command-click, .directory
 {
     cursor: pointer;

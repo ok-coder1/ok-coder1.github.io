@@ -7,6 +7,7 @@ const path = 'projects/contributions/skills';
 const dirs = path.split('/');
 var currentDate = new Date();
 const rebootDate = new Date(currentDate.setSeconds(currentDate.getSeconds() + 1));
+const poweroffDate = new Date(currentDate.setSeconds(currentDate.getSeconds() + 1));
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const getLang = () => navigator.language || navigator.browserLanguage || ( navigator.languages || [ "en" ] ) [ 0 ];
 const locale = getLang();
@@ -126,6 +127,34 @@ const commands = {
             location.reload(true);
         }, 5000);
     },
+    /*poweroff()
+    {
+        this.set_prompt('').pause(true);
+        this.echo(`System shutdown scheduled at <b>${poweroffDate}</b>.`);
+        setTimeout(() => {
+            this.clear();
+            this.set_prompt('').pause(true)
+            this.echo('<b>Shutting down</b>').addClass('poweroff');
+        }, 1000);
+        setTimeout(() => {
+            this.clear();
+            this.set_prompt('').pause(true);
+            this.echo('<b>Shutting down.</b>').addClass('poweroff');
+        }, 2000);
+        setTimeout(() => {
+            this.clear();
+            this.set_prompt('').pause(true);
+            this.echo('<b>Shutting down..</b>').addClass('poweroff');
+        }, 3000);
+        setTimeout(() => {
+            this.set_prompt('').pause(true);
+            this.clear();
+            this.echo('<b>Shutting down...</b>').addClass('poweroff');
+        }, 4000);
+        setTimeout(() => {
+            window.close();
+        }, 5000);
+    },*/
     fastfetch()
     {
         function ConvertSeconds(n) {
@@ -593,6 +622,12 @@ async function ready()
     term.clear();
 
     term.resume();
+    term.animation(async () => {
+        await term.echo(`<green>User@laptop</green>:<purple>~</purple>$ ssh guest@okcoder1`, { delay: 75, typing: true });
+    });
+    await sleep(2600);
+    term.clear();
+
     term.echo(rainbow(render('okcoder1')), { ansi: true }).addClass('intro');
     term.animation(async () => {
         await term.echo(`<b>Hi! I'm <green>okcoder1</green>!</b>`, { delay: 75, typing: true });
