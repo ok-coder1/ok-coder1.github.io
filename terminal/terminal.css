@@ -1,7 +1,14 @@
 @font-face
 {
     font-family: linux;
+    font-display: swap;
     src: url(../fonts/osd_mono.ttf);
+}
+
+@font-face {
+    font-family: serrif;
+    font-display: swap;
+    src: url(../fonts/serrif.woff2);
 }
 
 .startup-log
@@ -34,4 +41,35 @@
 .command-click, .directory
 {
     cursor: pointer;
+}
+
+.terminal-webring-box {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: #000;
+    border: 1px solid #ebbcba;
+    border-radius: 12px;
+    padding: 4px 6px;
+    z-index: 100;
+    font-family: serrif;
+    color: #00ff00;
+    box-shadow: 0px 0px 10px #c1694f;
+}
+
+.webring-nav {
+    display: flex;
+    align-items: center;
+    gap: 7.5px;
+}
+
+.webring-nav a {
+    color: #ebbcba;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.webring-nav a:hover {
+    background: #ebbcba;
+    color: #000;
 }

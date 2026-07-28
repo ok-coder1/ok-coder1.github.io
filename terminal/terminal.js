@@ -155,6 +155,7 @@ const commands = {
             window.close();
         }, 5000);
     },*/
+    /*
     fastfetch()
     {
         function ConvertSeconds(n) {
@@ -193,6 +194,7 @@ const commands = {
                                Locale: ${locale}`;
         this.echo(rainbow(fastfetch_ascii));
     },
+    */
     ls(dir = null) {
         const dirs = path.split('/');
         function print_home()
@@ -404,7 +406,7 @@ const commands = {
     },
     discord()
     {
-        this.echo(`You wanna talk with me? Talk to me in <blue><b>Discord</blue></b>!`);
+        this.echo(`Chat with me in <blue><b>Discord</blue></b>!`);
         window.open('https://discordapp.com/users/983692760072745020', '_blank');
     },
     hackclub_slack()
@@ -414,7 +416,7 @@ const commands = {
     },
     twitch()
     {
-        this.echo(`<purple><b>Twitch</purple></b>? My streams (which I never do) are bad. Just a warning.`);
+        this.echo(`<purple><b>Twitch</purple></b>? I don't even stream much lol.`);
         window.open('https://www.twitch.tv/ok_coder1', '_blank');
     },
     github()
@@ -424,24 +426,24 @@ const commands = {
     },
     youtube()
     {
-        this.echo(`You can see my (very bad) videos in <red><b>YouTube</red></b>.`);
+        this.echo(`You can see my videos (warning: i make shit videos) in <red><b>YouTube</red></b>.`);
         window.open('https://youtube.com/@okcoder1', '_blank');
     },
     mail()
     {
-        this.echo(`You wanna send me an <white><b>email</b></white>? You gotcha!`);
+        this.echo(`Wanna send me an <white><b>email</b></white>? You gotcha!`);
         window.open('mailto:codershub.code@gmail.com', '_blank');
     },
     credits()
     {
         return [
             '',
-            '<white>Used libraries for this website:</white>',
-            '* <a target="_blank" href="https://terminal.jcubic.pl">jQuery Terminal</a>',
-            '* <a target="_blank" href="https://github.com/patorjk/figlet.js">Figlet.js</a>',
-            '* <a target="_blank" href="https://github.com/jcubic/isomorphic-lolcat">Isomorphic Lolcat</a>',
-            '* <a target="_blank" href="https://jokeapi.dev">Joke API</a>',
-            '* <a target="_blank" href="https://hackclub.com"> Hack Club for hosting the main website',
+            '<white>Credits:</white>',
+            '* <a target="_blank" href="https://terminal.jcubic.pl">jQuery Terminal - Library used for terminal</a>',
+            '* <a target="_blank" href="https://github.com/patorjk/figlet.js">Figlet.js - For fonts i think</a>',
+            '* <a target="_blank" href="https://github.com/jcubic/isomorphic-lolcat">Isomorphic Lolcat - For the rainbow effect</a>',
+            '* <a target="_blank" href="https://jokeapi.dev">Joke API - For the joke command</a>',
+            '* <a target="_blank" href="https://is-a.dev">is-a.dev - For the subdomain',
             ''
         ].join('\n');
     },
@@ -489,6 +491,19 @@ function prompt()
 const term = $('body').terminal(commands,
                                 {
                                     greetings: false,
+                                    html: true,
+                                    onInit: function(term) {
+                                        var webringBox = `
+                                        <div class="terminal-webring-box">
+                                            <div class="webring-nav">
+                                                <a href="https://horser.ing/prev/okcoder1">←</a>
+                                                <a href="http://horser.ing">horsering</a>
+                                                <a href="http://horser.ing/rand">🐴</a>
+                                                <a href="https://horser.ing/next/okcoder1">→</a>
+                                            </div>
+                                        </div>`;
+                                        term.append(webringBox);
+                                    },
                                     checkArity: false,
                                     completion(string)
                                     {
